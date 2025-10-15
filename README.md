@@ -20,9 +20,17 @@ For Enhanced:
 For RDR2:
 `C:\Users\<USERNAME>\Documents\Rockstar Games\Red Dead Redemption 2\Profiles\<PROFILE>`
 
+## How to use?
+All you have to do is select your input folder, AKA where your screenshots are located, select your output folder (optional), and click "Convert".
+
+If you don't select an output folder, the program will automatically make a folder named "Converted" inside the folder you ran the program in.
+
+You can watch the program convert the photos real time.
+
 ## Screenshots
 
-<img width="494" height="395" alt="image" src="https://github.com/user-attachments/assets/159971ce-02f9-491b-834c-16c00f0cfbf2" />
+<img width="494" height="396" alt="image" src="https://github.com/user-attachments/assets/7e945919-6322-4712-a834-94b3e24c000a" />
+
 
 > [!NOTE]
 > The program will keep your original screenshot files in tact and it should also work with future titles (like GTA VI).
