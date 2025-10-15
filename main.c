@@ -56,7 +56,7 @@ int ensure_dir(const char *path) {
 }
 
 int main() {
-    printf("RDR2 Photo Converter by ShAlAbajzer\n");
+    printf("RDR2 Photo Converter by NotStrahinja\n");
 
     if(!ensure_dir(OUT_DIR)) {
         return 1;
@@ -132,3 +132,4 @@ int main() {
     printf("Finished converting.\n");
     return 0;
 }
+
