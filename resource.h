@@ -1,0 +1,2 @@
+#define IDR_RDR2_ICON 101
+#define IDB_RDR2_BITMAP 69
