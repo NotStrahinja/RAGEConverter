@@ -27,6 +27,9 @@ If you don't select an output folder, the program will automatically make a fold
 
 You can watch the program convert the photos real time.
 
+### GUI vs Command Line
+There is also a command line version, and it defaults to "./Photos" and "./Converted", for all the people who may want to make scripts using this tool.
+
 ## Screenshots
 
 <img width="494" height="396" alt="image" src="https://github.com/user-attachments/assets/7e945919-6322-4712-a834-94b3e24c000a" />
