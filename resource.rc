@@ -1,6 +1,0 @@
-#include "windows.h"
-#define IDR_RDR2_ICON 101
-#define IDB_RDR2_BITMAP 69
-
-IDR_RDR2_ICON ICON "rage_logo.ico"
-IDB_RDR2_BITMAP BITMAP "rage_logo.bmp"
