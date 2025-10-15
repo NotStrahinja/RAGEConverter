@@ -33,6 +33,8 @@ There is also a command line version, and it defaults to "./Photos" and "./Conve
 ## Compiling
 You can see the instructions for compiling both the CLI and the GUI versions of the program in their corresponding directories.
 
+If you're too lazy to compile for yourself, you can just get the precompiled binary in the [Releases]() tab.
+
 ## Screenshots
 
 <img width="494" height="396" alt="image" src="https://github.com/user-attachments/assets/7e945919-6322-4712-a834-94b3e24c000a" />
