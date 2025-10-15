@@ -33,7 +33,7 @@ There is also a command line version, and it defaults to "./Photos" and "./Conve
 ## Compiling
 You can see the instructions for compiling both the CLI and the GUI versions of the program in their corresponding directories.
 
-If you're too lazy to compile for yourself, you can just get the precompiled binary in the [Releases]() tab.
+If you're too lazy to compile for yourself, you can just get the precompiled binary in the [Releases](https://github.com/NotStrahinja/RAGEConverter/releases/latest) tab.
 
 ## Screenshots
 
