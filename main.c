@@ -56,7 +56,7 @@ int ensure_dir(const char *path) {
 }
 
 int main() {
-    printf("RDR2 Photo Converter by NotStrahinja\n");
+    printf("RAGEConverter by NotStrahinja\n");
 
     if(!ensure_dir(OUT_DIR)) {
         return 1;
@@ -66,7 +66,7 @@ int main() {
     if(!dir) {
         perror("opendir");
         printf("\nPlease create a \"Photos\" folder and put your screenshots there in order to convert them.\n");
-        printf("Your screenshots are located in C:/Users/(USERNAME)/Documents/Rockstar Games/(ID)/\nAll of the screenshots are files that start with \"PRDR\".");
+        printf("All of the instructions on how to find the screenshots are on my GitHub.");
         printf("\n\n\nPress ENTER to continue...");
         getchar();
         return 1;
@@ -132,4 +132,5 @@ int main() {
     printf("Finished converting.\n");
     return 0;
 }
+
 
