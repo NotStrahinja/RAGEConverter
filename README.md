@@ -30,6 +30,9 @@ You can watch the program convert the photos real time.
 ### GUI vs Command Line
 There is also a command line version, and it defaults to "./Photos" and "./Converted", for all the people who may want to make scripts using this tool.
 
+## Compatibility
+This program is written purely in C along with the Win32 API, and it's compatible with older Windows version all the way up to **Windows XP**.
+
 ## Compiling
 You can see the instructions for compiling both the CLI and the GUI versions of the program in their corresponding directories.
 
