@@ -90,6 +90,36 @@ void copy_file_time(const char *src, const char *dst) {
     if(hDst != INVALID_HANDLE_VALUE) CloseHandle(hDst);
 }
 
+char *extract_file_time(const char *src) {
+    static char buf[32];
+    HANDLE hFile = CreateFileA(src, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    if(hFile == INVALID_HANDLE_VALUE) {
+        strcpy(buf, "unknown-CreateFileA");
+        return buf;
+    }
+
+    FILETIME mtime, localTime;
+    SYSTEMTIME stUTC, stLocal;
+
+    if(GetFileTime(hFile, NULL, NULL, &mtime)) {
+        FileTimeToLocalFileTime(&mtime, &localTime);
+        FileTimeToSystemTime(&localTime, &stLocal);
+
+        snprintf(buf, sizeof(buf), "%04d-%02d-%02d-%02d-%02d-%02d",
+            stLocal.wYear,
+            stLocal.wMonth,
+            stLocal.wDay,
+            stLocal.wHour,
+            stLocal.wMinute,
+            stLocal.wSecond);
+    } else {
+        strcpy(buf, "unknown-GetFileTime");
+    }
+
+    CloseHandle(hFile);
+    return buf;
+}
+
 int ensure_dir(const char *path) {
     struct stat st = {0};
     if(stat(path, &st) == -1) {
@@ -104,7 +134,7 @@ int ensure_dir(const char *path) {
 char g_inputDir[MAX_PATH] = ".\\Photos";
 char g_outputDir[MAX_PATH] = ".\\Converted";
 
-void run_converter() {
+void run_converter(BOOL useDate) {
     append_log("Starting conversion...\r\n");
 
     if(!ensure_dir(g_outputDir)) return;
@@ -150,7 +180,12 @@ void run_converter() {
 
             if(pos != -1) {
                 char out_path[512];
-                snprintf(out_path, sizeof(out_path), "%s/%s.jpg", g_outputDir, entry->d_name);
+                char *date = extract_file_time(src_path);
+                if(!useDate) {
+                    snprintf(out_path, sizeof(out_path), "%s/%s.jpg", g_outputDir, entry->d_name);
+                } else {
+                    snprintf(out_path, sizeof(out_path), "%s/%s.jpg", g_outputDir, date);
+                }
                 FILE *out = fopen(out_path, "wb");
                 if(!out) {
                     free(data);
@@ -162,7 +197,7 @@ void run_converter() {
                 copy_file_time(src_path, out_path);
 
                 char msg[512];
-                snprintf(msg, sizeof(msg), "Converted: %s\r\n", entry->d_name);
+                snprintf(msg, sizeof(msg), "Converted: %s -> %s\r\n", entry->d_name, useDate ? date : entry->d_name);
                 append_log(msg);
                 count++;
             }
@@ -234,13 +269,17 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                                        10, 85, 460, 260, hwnd, NULL, NULL, NULL);
             SendMessage(hEditLog, WM_SETFONT, (WPARAM)hFont, TRUE);
 
+            HWND hBoxDate = CreateWindowA("BUTTON", "Use date as filename", WS_VISIBLE | WS_CHILD | WS_TABSTOP | BS_AUTOCHECKBOX, 130, 45, 200, 30, hwnd, (HMENU)4, NULL, NULL);
+            SendMessage(hBoxDate, WM_SETFONT, (WPARAM)hFont, TRUE);
+
             break;
 
         case WM_COMMAND:
             switch(LOWORD(wParam)) {
                 case 1:
                     SendMessageA(hEditLog, WM_SETTEXT, 0, (LPARAM)"");
-                    run_converter();
+                    BOOL useDate = (SendMessage(GetDlgItem(hwnd, 4), BM_GETCHECK, 0, 0) == BST_CHECKED);
+                    run_converter(useDate);
                     break;
                 case 2:
                     if(SelectFolder(hwnd, g_inputDir, sizeof(g_inputDir))) {
