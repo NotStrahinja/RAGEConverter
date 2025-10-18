@@ -40,7 +40,7 @@ If you're too lazy to compile for yourself, you can just get the precompiled bin
 
 ## Screenshots
 
-<img width="494" height="396" alt="image" src="https://github.com/user-attachments/assets/7e945919-6322-4712-a834-94b3e24c000a" />
+<img width="496" height="402" alt="image" src="https://github.com/user-attachments/assets/bd8ad4c8-c72b-4cd5-8b8a-9a148f0d71e6" />
 
 
 > [!NOTE]
